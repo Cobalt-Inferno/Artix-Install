@@ -4,9 +4,9 @@ echo -e "n\np\n2\n\n\nw" | fdisk /dev/vda
 mkfs.fat -F32 /dev/vda1
 mkfs.ext4 /dev/vda2
 mount /dev/vda2 /mnt
-cat << EOF | artix-chroot /mnt
 basestrap /mnt base base-devel openrc elogind-openrc linux linux-firmware nano neofetch
 fstabgen -U /mnt >> /mnt/etc/fstab
+cat << EOF | artix-chroot /mnt
 locale-gen
 export LANG="en_US.UTF-8"
 export LC_COLLATE="C"
