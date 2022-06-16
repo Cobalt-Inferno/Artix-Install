@@ -29,19 +29,5 @@ echo -e "test\ntest" | passwd aslen
 yes | pacman -S sudo nano
 sed -i '80i aslen ALL=(ALL) ALL' /etc/sudoers
 pacman -S --noconfirm xorg-xinit xorg git 
-cd /usr/src
-git clone git://git.suckless.org/dwm
-git clone git://git.suckless.org/st
-git clone git://git.suckless.org/dmenu
-cd dwm
-make clean install
-cd ..
-cd st
-make clean install
-cd ..
-cd dmenu
-make clean install
-cd ..
 pacman -Syy
-echo 'Login as a user, then type 'nano ~/.xinitrc' and add "exec dwm" to it'
 EOF
