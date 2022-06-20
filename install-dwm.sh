@@ -1,9 +1,12 @@
 echo -e "d\nd\nd\nd\n\n\nw" | fdisk /dev/nvme0n1
 echo -e "n\np\n1\n\n+1G\nw" | fdisk /dev/nvme0n1
-echo -e "n\np\n2\n\n\nw" | fdisk /dev/nvme0n1
+echo -e "n\np\n2\n\n+16G\nw" | fdisk /dev/nvme0n1
+echo -e "n\np\n3\n\n\nw" | fdisk /dev/nvme0n1
 mkfs.fat -F32 /dev/nvme0n1p1
-mkfs.ext4 /dev/nvme0n1p2
+mkswap /dev/nvme0n1p2
+mkfs.ext4 /dev/nvme0n1p3
 mount /dev/nvme0n1p2 /mnt
+swapon /dev/nvme0n1p2
 basestrap /mnt base base-devel openrc elogind-openrc linux linux-firmware nano neofetch
 fstabgen -U /mnt >> /mnt/etc/fstab
 cat << EOF | artix-chroot /mnt
